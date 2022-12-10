@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Task = () => {
+const Task = (props) => {
     return (
         <div className="card">
                 <div className="card-body">
