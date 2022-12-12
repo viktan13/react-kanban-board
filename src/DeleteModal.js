@@ -11,7 +11,6 @@ function DeleteModal(props) {
 
     return (
         <div>
-
             <Modal isOpen={modal} toggle={toggle} {...props}>
                 <ModalHeader toggle={toggle}>Delete Task</ModalHeader>
                 <ModalBody>

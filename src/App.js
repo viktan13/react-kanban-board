@@ -66,7 +66,8 @@ function App() {
             <div className="row align-items-start">
                 {statuses.map((el, i) => (
                     <Column key={i}
-                            tasks={tasks} status={el}
+                            tasks={tasks}
+                            status={el}
                             changePriority={changePriority}
                             changeStatus={changeStatus}
                             statuses={statuses}
