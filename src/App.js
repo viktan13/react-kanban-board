@@ -44,11 +44,34 @@ function App() {
         'done'
     ])
 
+    const changePriority = (id, value) => {
+        const newTasks = tasks.map(el => el.id === id ? {...el, priority: el.priority + value} : el);
+        setTasks(newTasks);
+    }
+
+    const changeStatus = (id, value, status) => {
+        const currentIndex = statuses.indexOf(status);
+        const newStatus = statuses[currentIndex + value];
+        const newTask = tasks.map(el => el.id === id ? {...el, status: newStatus} : el);
+        setTasks(newTask);
+    }
+
+    const onDelete = (id) => {
+        const newTasks = tasks.filter(el => el.id !== id);
+        setTasks(newTasks);
+    }
+
     return (
         <div className="container text-center">
             <div className="row align-items-start">
                 {statuses.map((el, i) => (
-                    <Column key={i} tasks={tasks} status={el}/>
+                    <Column key={i}
+                            tasks={tasks} status={el}
+                            changePriority={changePriority}
+                            changeStatus={changeStatus}
+                            statuses={statuses}
+                            onDelete={onDelete}
+                    />
                 ))}
             </div>
         </div>

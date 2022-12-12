@@ -2,12 +2,18 @@ import React from 'react';
 import Task from './Task'
 
 const Column = (props) => {
-    const {status, tasks} = props;
+    const {onDelete, status, tasks, changeStatus, statuses} = props;
     return (
         <div className='col'>
             <h2>{status.toUpperCase()}</h2>
-            {tasks.map(el => (
-                <Task task={el} />
+            {tasks.filter(el => el.status === status).map(el => (
+                <Task
+                    task={el}
+                    changePriority={props.changePriority}
+                    changeStatus={changeStatus}
+                    statuses={statuses}
+                    onDelete={onDelete}
+                />
             ))}
         </div>
     );
