@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 import DeleteModal from "./DeleteModal";
+import UpdateModal from "./UpdateModal";
+import {Button} from "reactstrap";
 
-const Task = ({onDelete, task, changePriority, changeStatus, statuses}) => {
+const Task = ({updateTask, onDelete, task, changePriority, changeStatus, statuses, priority}) => {
 
     const [modal, setModal] = useState(false);
+    const [updateModal, setUpdateModal] = useState(false);
 
     const toggle = () => setModal(!modal);
+    const updateToggle = () => setUpdateModal(!updateModal);
 
     return (
         <div className="card">
@@ -41,7 +45,20 @@ const Task = ({onDelete, task, changePriority, changeStatus, statuses}) => {
                     disabled={statuses.indexOf(task.status) === 0}
                 >←
                 </button>
-                <button type="button" className="btn btn-outline-success">Update</button>
+                <Button
+                    color="outline-success"
+                    onClick={updateToggle}
+                >
+                    Update
+                </Button>
+                {updateModal && <UpdateModal
+                    statuses={statuses}
+                    priority={priority}
+                    task={task}
+                    toggle={updateToggle}
+                    modal={updateModal}
+                    updateTask={updateTask}
+                />}
                 <button
                     type="button"
                     className="btn btn-outline-danger"

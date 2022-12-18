@@ -67,6 +67,11 @@ function App() {
         setTasks([...tasks, newTask]);
     }
 
+    const updateTask = (updTask) => {
+        const updtTask = tasks.map(el => el.id === updTask.id ? {...updTask} : el)
+        setTasks(updtTask);
+    }
+
     return (
         <div className="container text-center">
             <h1>Kanban Board</h1>
@@ -84,6 +89,8 @@ function App() {
                             changeStatus={changeStatus}
                             statuses={statuses}
                             onDelete={onDelete}
+                            priority={priority}
+                            updateTask={updateTask}
                     />
                 ))}
             </div>

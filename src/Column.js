@@ -2,7 +2,7 @@ import React from 'react';
 import Task from './Task'
 
 const Column = (props) => {
-    const {onDelete, status, tasks, changeStatus, statuses} = props;
+    const {updateTask, onDelete, status, tasks, changeStatus, statuses, priority} = props;
     return (
         <div className='col'>
             <h2>{status.toUpperCase()}</h2>
@@ -13,6 +13,8 @@ const Column = (props) => {
                     changeStatus={changeStatus}
                     statuses={statuses}
                     onDelete={onDelete}
+                    priority={priority}
+                    updateTask={updateTask}
                 />
             ))}
         </div>
