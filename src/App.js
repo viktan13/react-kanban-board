@@ -2,6 +2,7 @@ import {v4 as uuidv4} from 'uuid';
 import {useState} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import Column from "./Column";
+import CreateTaskModal from "./CreateTaskModal";
 
 const todo = [
     {
@@ -43,6 +44,7 @@ function App() {
         'review',
         'done'
     ])
+    const [priority, setPriority] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
     const changePriority = (id, value) => {
         const newTasks = tasks.map(el => el.id === id ? {...el, priority: el.priority + value} : el);
@@ -61,8 +63,18 @@ function App() {
         setTasks(newTasks);
     }
 
+    const addTask = (newTask) => {
+        setTasks([...tasks, newTask]);
+    }
+
     return (
         <div className="container text-center">
+            <h1>Kanban Board</h1>
+            <CreateTaskModal
+                statuses={statuses}
+                priority={priority}
+                addTask={addTask}
+            />
             <div className="row align-items-start">
                 {statuses.map((el, i) => (
                     <Column key={i}
